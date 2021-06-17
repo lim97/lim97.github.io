@@ -1,0 +1,747 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<style type="text/css">
+    @import url("static/css/styles.css");
+</style>
+<script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
+
+<!--<script>-->
+<!--$(function(){-->
+<!--$("#myDummyTable").tablesorter({widgets: ['zebra']});-->
+<!--});-->
+<!--</script>-->
+
+{% if user.is_authenticated %}
+<div class="item-wrap py-12 relative">
+    <div class="items absolute">
+        <div class="item lg:px-4">
+            <div class="inner border-2 border-general bg-gray-100">
+                <img class="bitcoin" src="https://s2.coinmarketcap.com/static/img/coins/200x200/1.png">
+                <p class="bitconinp">BTC/KRW</p>
+                <img class="upbit" src="https://s2.coinmarketcap.com/static/img/exchanges/64x64/351.png">
+                <p class="sellp text-{{color_u}}">{{status_u.0}}</p>
+                <p class="krw text-{{color_u}}">{{status_u.1}} KRW</p>
+                <p class="date">{{status_u.2}}</p>
+                <p class="revenue">*누적 수익률(200일) : {{ROE_u}}%</p>
+            </div>
+        </div>
+        <div class="item lg:px-4 absolute">
+            <div class="inner border-2 border-general bg-gray-100">
+                <img class="bitcoin" src="https://s2.coinmarketcap.com/static/img/coins/200x200/1.png">
+                <p class="bitconinp">BTC/USDT</p>
+                <img class="upbit" src="https://s2.coinmarketcap.com/static/img/exchanges/64x64/270.png">
+                <p class="sellp text-{{color_b}}">{{status_b.0}}</p>
+                <p class="krw text-{{color_b}}">{{status_b.1}} USDT</p>
+                <p class="date">{{status_b.2}}</p>
+                <p class="revenue">*누적 수익률(200일) : {{ROE_b}}%</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="item-wrap py-12 relative">
+    <div class="items absolute">
+        <div class="item lg:px-4">
+            <div class="inner border-2 border-general bg-gray-100">
+                <img class="bitcoin" src="https://s2.coinmarketcap.com/static/img/coins/200x200/1.png">
+                <p class="bitconinp">BTC/KRW</p>
+                <img class="upbit" src="https://s2.coinmarketcap.com/static/img/exchanges/64x64/351.png">
+                <p class="sellp text-{{color_u}}">{{status_u.0}}</p>
+                <p class="krw text-{{color_u}}">????? KRW</p>
+                <p class="date"><a style="text-decoration: underline" href="{% url "users:kakao-login" %}"> 로그인 후 확인</a></p>
+                <p class="revenue">*누적 수익률(200일) : {{ROE_u}}%</p>
+            </div>
+        </div>
+        <div class="item lg:px-4 absolute">
+            <div class="inner border-2 border-general bg-gray-100">
+                <img class="bitcoin" src="https://s2.coinmarketcap.com/static/img/coins/200x200/1.png">
+                <p class="bitconinp">BTC/USDT</p>
+                <img class="upbit" src="https://s2.coinmarketcap.com/static/img/exchanges/64x64/270.png">
+                <p class="sellp text-{{color_b}}">{{status_b.0}}</p>
+                <p class="krw text-{{color_b}}">????? USDT</p>
+                <p class="date"><a style="text-decoration: underline" href="{% url "users:kakao-login" %}"> 로그인 후 확인</a></p>
+                <p class="revenue">*누적 수익률(200일) : {{ROE_b}}%</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endif %}}
+
+
+
+
+<!--<div class="item-wrap py-12">-->
+<!--    <div class="items">-->
+<!--        <div class="item lg:px-4">-->
+<!--            <div class="inner">-->
+<!--                <span>업비트 {{ROE_u}}%</span>-->
+<!--                <span></span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="item lg:px-4">-->
+<!--            <div class="inner">-->
+<!--                <span>바이낸스 {{ROE_b}}%</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div id="__next" style="height: auto !important;">
+    <!--<header class="relative lg:sticky lg:top-0 z-40 shadow bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 bg-blur">
+        <div class="py-2 bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800">
+            <div class="max-w-screen-lg px-2.5 lg:px-4 mx-auto relative overflow-x-auto scroll-hidden">
+                <ul class="flex text-xs tracking-tight lg:tracking-normal text-gray-900 dark:text-white whitespace-nowrap">
+                    <li class="mr-4 flex flex-col lg:flex-row"><span class="text-gray-600 dark:text-gray-400 lg:mr-2">USD/KRW</span>1,115<span
+                            class="lg:ml-1 text-gray-400 text-red">-0.18%</span></li>
+                    <li class="flex-1"></li>
+                    <li class="flex flex-col lg:flex-row pr-2.5 lg:pr-0"><span
+                            class="text-gray-600 dark:text-gray-400 lg:mr-2">동부 표준시</span>07:31
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="max-w-screen-lg px-2.5 lg:px-4 mx-auto relative">
+                <div class="flex flex-col lg:flex-row lg:items-center">
+                    <div class="flex flex-col lg:flex-row mt-2 lg:my-4 lg:space-x-10">
+                        <strong class="font-gilroy text-2xl lg:text-3xl text-primary cursor-pointer select-none">kimpga</strong>
+                        <nav class="overflow-x-auto lg:overflow-x-hidden scroll-hidden">
+                            <ul class="flex items-center mt-2.5 lg:mt-1.5 space-x-4 lg:space-x-5">
+                                <li class="text-sm whitespace-nowrap tracking-tight relative pb-2 lg:pb-1 font-bold border-b-2 border-primary">
+                                    <a href="index.html">김치프리미엄</a></li>
+                                <li class="text-sm whitespace-nowrap tracking-tight relative pb-2 lg:pb-1 border-b-2 border-transparent">
+                                    <a href="community.html">커뮤니티</a>
+                                    <div class="z-10 inline-flex absolute -right-3 -top-1.5">
+                                        <span class="w-3 h-3 bg-secondary rounded-full animate-pulse"></span><span
+                                            class="absolute inset-0 m-auto w-1.5 h-1.5 bg-secondary rounded-full"></span>
+                                    </div>
+                                </li>
+                                <li class="text-sm whitespace-nowrap tracking-tight relative pb-2 lg:pb-1 border-b-2 border-transparent">
+                                    <a href="longshort.html">롱 &amp; 숏</a></li>
+                                <li class="text-sm whitespace-nowrap tracking-tight relative pb-2 lg:pb-1 border-b-2 border-transparent">
+                                    <a href="marketcap.html">시가총액</a></li>
+                                <li class="text-sm whitespace-nowrap tracking-tight relative pb-2 lg:pb-1 border-b-2 border-transparent">
+                                    <a href="trends.html">트렌드</a></li>
+                                <li class="text-sm whitespace-nowrap tracking-tight relative pb-2 lg:pb-1 border-b-2 border-transparent">
+                                    <a href="news.html">뉴스</a></li>
+                                <li class="text-sm whitespace-nowrap tracking-tight relative pb-2 lg:pb-1 border-b-2 border-transparent">
+                                    <a href="about.html">소개</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <span class="flex-1"></span>
+                    <div class="absolute lg:static top-2 right-2 text-xs lg:space-x-2 flex">
+                        <div class="select-none relative cursor-pointer flex flex-col hover:bg-gray-100 dark:hover:bg-gray-700 rounded">
+                            <div class="flex items-center space-x-1.5 justify-between py-2.5 lg:py-1.5 pl-1 pr-2">
+                                <div class="mx-1 whitespace-nowrap overflow-x-hidden">
+                                    다크 모드
+                                </div>
+                                <i aria-hidden="true" class="fas fa-chevron-down text-gray-300 dark:text-gray-500"></i>
+                            </div>
+                        </div>
+                        <div class="select-none relative cursor-pointer flex flex-col hover:bg-gray-100 dark:hover:bg-gray-700 rounded">
+                            <div class="flex items-center space-x-1.5 justify-between py-2.5 lg:py-1.5 pl-1 pr-2">
+                                <div class="mx-1 whitespace-nowrap overflow-x-hidden">
+                                    한국어
+                                </div>
+                                <i aria-hidden="true" class="fas fa-chevron-down text-gray-300 dark:text-gray-500"></i>
+                            </div>
+                        </div>
+                        <div class="font-bold pl-2 inline-flex items-center">
+                            <a class="py-2 px-4" href="signin.html">로그인</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header> !-->
+
+    <div class="max-w-screen-lg px-2.5 lg:px-4 mx-auto relative overflow-x-hidden">
+        <div class="relative" style="height: auto !important;">
+            <div class="mb-8" style="height: auto !important;">
+                <!--<div class="flex mt-4 mb-2 space-x-2 justify-between">
+                    <div class="select-none relative cursor-pointer flex flex-col hover:bg-gray-100 dark:hover:bg-gray-700 rounded px-1 rounded border border-general bg-gray-50 dark:bg-gray-800 text-sm w-full lg:w-auto">
+                        <div class="flex items-center space-x-1.5 justify-between py-2.5 lg:py-1.5 pl-1 pr-2">
+                            <div class="mx-1 whitespace-nowrap overflow-x-hidden">
+                                비트코인 - 바이낸스
+                            </div>
+                            <i aria-hidden="true" class="fas fa-chevron-down text-gray-300 dark:text-gray-500"></i>
+                        </div>
+                    </div>
+                    <span class="flex items-center space-x-1.5 py-2 px-3 text-sm rounded-full cursor-pointer whitespace-nowrap tracking-tight border dark:border-0 border-general bg-white hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600"><i aria-hidden="true" class="fas fa-cog"></i><span>개인화 설정</span></span>
+                </div>!-->
+                <!--<div class="overflow-x-scroll scroll-hidden my-2 rounded border border-general bg-white dark:bg-gray-900">
+                    <div style="width: 1600px;">
+                        <div class="tradingview-widget-container" style="width: 100%; height: 72px;">
+                            <style>
+    .tradingview-widget-copyright {
+        font-size: 13px !important;
+        line-height: 32px !important;
+        text-align: center !important;
+        vertical-align: middle !important;
+        font-family: 'Trebuchet MS', Arial, sans-serif !important;
+        color: #9db2bd !important;
+    }
+    .tradingview-widget-copyright .blue-text {
+        color: #2196f3 !important;
+    }
+    .tradingview-widget-copyright a {
+        text-decoration: none !important;
+        color: #9db2bd !important;
+    }
+    .tradingview-widget-copyright a:visited {
+        color: #9db2bd !important;
+    }
+    .tradingview-widget-copyright a:hover .blue-text {
+        color: #38acdb !important;
+    }
+    .tradingview-widget-copyright a:active .blue-text {
+        color: #299dcd !important;
+    }
+    .tradingview-widget-copyright a:visited .blue-text {
+        color: #2196f3 !important;
+    }
+                            </style>
+                            <iframe scrolling="no" allowtransparency="true" frameborder="0" src="https://s.tradingview.com/embed-widget/tickers/?locale=kr#%7B%22symbols%22%3A%5B%7B%22title%22%3A%22S%26P%20500%22%2C%22proName%22%3A%22FOREXCOM%3ASPXUSD%22%7D%2C%7B%22title%22%3A%22NASDAQ%20100%22%2C%22proName%22%3A%22FOREXCOM%3ANSXUSD%22%7D%2C%7B%22title%22%3A%22KOSPI%22%2C%22proName%22%3A%22KRX%3AKOSPI%22%7D%2C%7B%22title%22%3A%22KOSDAQ%22%2C%22proName%22%3A%22KRX%3AKOSDAQ%22%7D%2C%7B%22title%22%3A%22BTC%20Dominance%22%2C%22proName%22%3A%22CRYPTOCAP%3ABTC.D%22%7D%2C%7B%22title%22%3A%22BTC%20Longs%22%2C%22proName%22%3A%22BITFINEX%3ABTCUSDLONGS%22%7D%2C%7B%22title%22%3A%22BTC%20Shorts%22%2C%22proName%22%3A%22BITFINEX%3ABTCUSDSHORTS%22%7D%2C%7B%22title%22%3A%22GOLD%22%2C%22proName%22%3A%22TVC%3AGOLD%22%7D%5D%2C%22colorTheme%22%3A%22dark%22%2C%22showSymbolLogo%22%3Atrue%2C%22isTransparent%22%3Atrue%2C%22largeChartUrl%22%3A%22https%3A%2F%2Fkimpga.com%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A72%2C%22utm_source%22%3A%22%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22tickers%22%7D" style="box-sizing: border-box; height: 72px; width: 100%;">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>!-->
+                <!--<div class="h-72 lg:h-80 relative resize-y overflow-y-auto pb-4 mb-0.5 ">
+                    <div id="trading-view-primary" class="h-full">
+                        <div id="tradingview_783cf-wrapper" style="position: relative;box-sizing: content-box;width: 100%;height: 100%;margin: 0 auto !important;padding: 0 !important;font-family:Arial,sans-serif;">
+                            <div style="width: 100%;height: 100%;background: transparent;padding: 0 !important;">
+                                <iframe id="tradingview_783cf" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_783cf&amp;symbol=BINANCE%3ABTCUSDT&amp;interval=15&amp;symboledit=1&amp;saveimage=0&amp;toolbarbg=f1f3f6&amp;studies=%5B%5D&amp;theme=Dark&amp;style=1&amp;timezone=Asia%2FSeoul&amp;studies_overrides=%7B%7D&amp;overrides=%7B%7D&amp;enabled_features=%5B%5D&amp;disabled_features=%5B%5D&amp;locale=kr&amp;utm_source=&amp;utm_medium=widget&amp;utm_campaign=chart&amp;utm_term=BINANCE%3ABTCUSDT" style="width: 100%; height: 100%; margin: 0 !important; padding: 0 !important;" frameborder="0" allowtransparency="true" scrolling="no" allowfullscreen="">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute right-0 bottom-0 border-resize hidden lg:inline-block">
+                    </div>
+                </div>!-->
+                <div class="text-sm w-full border-general py-4 flex items-end lg:items-center space-x-2.5 lg:space-x-4 lg:px-1">
+                    <div class="w-28 lg:w-auto flex flex-col lg:flex-row space-y-1.5 lg:space-y-0 lg:items-center lg:space-x-4">
+                        <!--                        <span class="text-gray-600 dark:text-gray-400 text-xs">기준 거래소</span>-->
+                        <!--                        <div class="select-none relative cursor-pointer flex flex-col hover:bg-gray-100 dark:hover:bg-gray-700 rounded text-xs bg-gray-50 dark:bg-gray-800 border dark:border-0 border-general rounded">-->
+                        <!--                            <div class="flex items-center space-x-1.5 justify-between py-2.5 lg:py-1.5 pl-1 pr-2">-->
+                        <div class="mx-1 whitespace-nowrap overflow-x-hidden">
+                                    <span class="flex items-center tracking-tight lg:tracking-normal text-sm font-bold">
+                                        <img src="https://s2.coinmarketcap.com/static/img/exchanges/64x64/351.png"
+                                             alt="업비트"
+                                             class="flex-shrink-0 w-4 h-4 mr-2">업비트(KRW)</span>
+                        </div>
+                        <!--                                <i aria-hidden="true" class="fas fa-chevron-down text-gray-300 dark:text-gray-500"></i>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                    <i aria-hidden="true" class="text-xs fas fa-exchange-alt text-gray-500 mb-2.5 lg:mb-0"></i>
+                    <div class="flex-1 lg:flex-none flex flex-col lg:flex-row-reverse space-y-1.5 lg:space-y-0 lg:items-center lg:space-x-4 lg:space-x-reverse">
+                        <!--                        <span class="text-gray-600 dark:text-gray-400 text-xs inline-flex items-center">해외 거래소</span>-->
+                        <!--                        <div class="select-none relative cursor-pointer flex flex-col hover:bg-gray-100 dark:hover:bg-gray-700 rounded text-xs bg-gray-50 dark:bg-gray-800 border dark:border-0 border-general rounded">-->
+                        <!--                            <div class="flex items-center space-x-1.5 justify-between py-2.5 lg:py-1.5 pl-1 pr-2">-->
+                        <div class="mx-1 whitespace-nowrap overflow-x-hidden">
+                                    <span class="flex items-center tracking-tighter lg:tracking-tight text-sm font-bold text-gray-500"><img
+                                            src="https://s2.coinmarketcap.com/static/img/exchanges/64x64/270.png"
+                                            alt="바이낸스 USDT 마켓"
+                                            class="flex-shrink-0 w-4 h-4 mr-2">바이낸스(USDT)</span>
+                        </div>
+                        <!--                                <i aria-hidden="true" class="fas fa-chevron-down text-gray-300 dark:text-gray-500"></i>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+                <!--                <div class="lg:hidden block my-2">-->
+                <!--                </div>-->
+                <div class="relative">
+                    <div class="text-xs lg:absolute lg:bottom-full lg:right-0 lg:py-2 w-full lg:w-1/3 flex items-center justify-between space-x-2">
+                        <span class="flex-1 whitespace-nowrap"></span><span
+                            class="w-3/5 flex items-center relative overflow-hidden border border-general dark:border-0"><i
+                            aria-hidden="true" class="fas fa-search absolute lg:text-base text-blue-500 right-2"></i>
+                            <input type="text" id="value" onkeyup="filter()"
+                                   class="w-full text-sm lg:py-2 pl-2 pr-8 bg-gray-50 dark:bg-gray-800 placeholder-gray-400 dark:placeholder-gray-600"
+                                   placeholder="코인명/심볼검색"></span>
+                    </div>
+                    <table id="myDummyTable" class="w-full">
+                        <thead>
+                        <tr id="" class="text-right text-gray-500 text-xs cursor-pointer">
+                            <th onClick="sorting('coin_name', this)"
+                                class=" whitespace-nowrap select-none py-3 lg:py-4 sticky top-0 bg-gray-100 dark:bg-gray-900 text-left lg:pl-6">
+                                한글명<span class="relative text-gray-400 dark:text-gray-600 text-xxs align-top ml-1"><i
+                                    aria-hidden="true" class="fas fa-sort-up"></i><i aria-hidden="true"
+                                                                                     class="absolute left-0 bottom-0 fas fa-sort-down"></i></span>
+                            </th>
+                            <th onClick="sorting('kimp', this)"
+                                class="whitespace-nowrap select-none py-3 lg:py-4 sticky top-0 bg-gray-100 dark:bg-gray-900 text-right lg:pr-32">
+                                김프<span class="relative text-gray-400 dark:text-gray-600 text-xxs align-top ml-1"><i
+                                    aria-hidden="true" class="fas fa-sort-up"></i><i aria-hidden="true"
+                                                                                     class="absolute left-0 bottom-0 fas fa-sort-down"></i></span>
+                            </th>
+                            <th onClick="sorting('price', this)"
+                                class="whitespace-nowrap select-none py-3 lg:py-4 sticky top-0 bg-gray-100 dark:bg-gray-900 lg:pr-32">
+                                현재가<span
+                                    class="relative text-gray-400 dark:text-gray-600 text-xxs align-top ml-1"><i
+                                    aria-hidden="true" class="fas fa-sort-up"></i><i aria-hidden="true"
+                                                                                     class="absolute left-0 bottom-0 fas fa-sort-down"></i></span>
+                            </th>
+                            <th onClick="sorting('change_rate', this)"
+                                class="whitespace-nowrap select-none py-3 lg:py-4 sticky top-0 bg-gray-100 dark:bg-gray-900 lg:pr-32">
+                                전일대비<span class="relative text-gray-400 dark:text-gray-600 text-xxs align-top ml-1"><i
+                                    aria-hidden="true" class="fas fa-sort-up"></i><i aria-hidden="true"
+                                                                                     class="absolute left-0 bottom-0 fas fa-sort-down"></i></span>
+                            </th>
+                            <!--                                <th class="select-none py-3 lg:py-4 sticky top-0 bg-gray-100 dark:bg-gray-900 hidden lg:table-cell">-->
+                            <!--                                    고가대비(52주)<span-->
+                            <!--                                        class="relative text-gray-400 dark:text-gray-600 text-xxs align-top ml-1"><i-->
+                            <!--                                        aria-hidden="true" class="fas fa-sort-up"></i><i aria-hidden="true"-->
+                            <!--                                                                                         class="absolute left-0 bottom-0 fas fa-sort-down"></i></span>-->
+                            <!--                                </th>-->
+                            <!--                                <th class="select-none py-3 lg:py-4 sticky top-0 bg-gray-100 dark:bg-gray-900 hidden lg:table-cell">-->
+                            <!--                                    저가대비(52주)<span-->
+                            <!--                                        class="relative text-gray-400 dark:text-gray-600 text-xxs align-top ml-1"><i-->
+                            <!--                                        aria-hidden="true" class="fas fa-sort-up"></i><i aria-hidden="true"-->
+                            <!--                                                                                         class="absolute left-0 bottom-0 fas fa-sort-down"></i></span>-->
+                            <!--                                </th>-->
+                            <th id="th_volume" onClick="sorting('volume', this)"
+                                class="whitespace-nowrap select-none lg:py-4 sticky top-0 py-3 lg:py-4 sticky top-0 py-3 lg:py-4 sticky top-0 bg-gray-100 dark:bg-gray-900 dark:text-gray-200 lg:pr-6">
+                                24H 거래대금<span
+                                    class="relative text-gray-400 dark:text-gray-600 text-xxs align-top ml-1"><i
+                                    aria-hidden="true" class="fas fa-sort-up"></i><i aria-hidden="true"
+                                                                                     class="absolute left-0 bottom-0 fas fa-sort-down dark:text-gray-100 "></i></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody id="kimp">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var KRW_Market = KRW_MarketList();
+    var KRW_tmp = KRW_Market.slice();
+    var KRW_Coin = KRW_MarketCoin(KRW_Market);
+    var USDT_Coin = USDT_MarketCoin();
+    var Exchange_Rate = Ex_Rate();
+    var sort = "volume";
+    var scending = "D";
+    var th_volume = document.getElementById("th_volume");
+    th_volume.style.fontWeight = "bold";
+    th_volume.classList.add('text-gray-900');
+    th_volume.children[0].children[1].classList.add('text-gray-900');
+    var obj_bold = th_volume;
+    //var KRW_Coin = KRW_MarketCoin(KRW_Market);
+    //var coinname_kr = KRW_Market[0]['korean_name'];
+    var test = document.getElementById("test");
+    //test.firstChild.nodeValue = JSON.stringify(USDT_Market['dd']['volume'].is);
+
+    createKimp();
+
+    var serogochim = setTimeout(function run() {
+        KRW_Coin = KRW_MarketCoin(KRW_Market);
+        USDT_Coin = USDT_MarketCoin();
+        Exchange_Rate = Ex_Rate();
+        createKimp();
+        setTimeout(run, 3000);
+    }, 3000);
+
+    /*var serogochim = setInterval(function () {
+        KRW_Coin = KRW_MarketCoin(KRW_Market);
+        //kimp1.firstChild.nodeValue = JSON.stringify(KRW_Coin[0]);
+        createKimp(1, KRW_Market, KRW_Coin);
+    }, 500);*/
+
+    function KRW_MarketList() {
+        const request = new XMLHttpRequest();
+        const url = 'https://api.upbit.com/v1/market/all';
+
+        request.open("GET", url, false);
+        request.send();
+        var obj = JSON.parse(request.responseText);
+
+        var KRW_Market = [];
+        for (i = 0; i < obj.length; i++) {
+            ticker = JSON.stringify(obj[i]['market']).replace(/\"/g, "");
+            if (ticker.split("-")[0] == "KRW") {
+                KRW_Market.push(obj[i]);
+            }
+        }
+
+        return KRW_Market;
+    }
+
+    function USDT_MarketCoin() {
+        const request = new XMLHttpRequest();
+        const url = 'https://api.binance.com/api/v3/ticker/24hr';
+        //https://api.binance.com/api/v3/exchangeInfo?symbols=["BTCUSDT","BNBBTC"]
+
+        request.open("GET", url, false);
+        request.send();
+        var obj = JSON.parse(request.responseText);
+
+        var USDT_Market = {};
+        for (i = 0; i < obj.length; i++) {
+            ticker = JSON.stringify(obj[i]["symbol"]).replace(/\"/g, "");
+            if (ticker.slice(-4) == "USDT") {
+                USDT_Market[ticker.replace("USDT", "")] = obj[i];
+            }
+        }
+
+        return USDT_Market;
+    }
+
+    function KRW_MarketCoin(KRW_Market) {
+        const request = new XMLHttpRequest();
+        var url = 'https://api.upbit.com/v1/ticker?markets=';
+
+        var KRW_coinlist = "";
+        for (i = 0; i < KRW_Market.length; i++) {
+            ticker = JSON.stringify(KRW_Market[i]['market']).replace(/\"/g, "");
+            KRW_coinlist += ticker;
+            KRW_coinlist += ", ";
+        }
+        KRW_coinlist = KRW_coinlist.slice(0, -2);
+        url += KRW_coinlist;
+
+        request.open("GET", url, false);
+        request.send();
+        var obj = JSON.parse(request.responseText);
+
+        return obj;
+    }
+
+    function Ex_Rate() {
+        const request = new XMLHttpRequest();
+        var url = 'https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=krw';
+        request.open("GET", url, false);
+        request.send();
+        var Ex_Rate = JSON.parse(request.responseText)['tether']['krw'];
+
+        return Ex_Rate;
+    }
+
+    function createKimp() {
+        // var KRW_Coin = KRW_MarketCoin(KRW_Market);
+        // var USDT_Coin = USDT_MarketCoin();
+        var innerHTML = "";
+        var kimp_arr = [];
+
+        for (i = 0; i < KRW_Coin.length; i++) {
+            coinname_kr = KRW_Market[i]['korean_name'];
+            ticker = KRW_Market[i]['market'].split("-")[1];
+            KRW_price = KRW_Coin[i]['trade_price'];
+            USDT_price = "";
+
+
+            kimp_percent = 99999;
+            if (scending == 'D')
+                kimp_percent = -99999;
+            kimp_price = "";
+            kimp_color = "";
+
+            change_color = "";
+            change_rate = KRW_Coin[i]['signed_change_rate'] * 100; //ward
+            change_price = KRW_Coin[i]['signed_change_price'];
+            if (Math.round(Math.abs(change_price)).toString().length < 3)
+                change_price = change_price.toFixed(2);
+            change_price = addComma(change_price);
+
+            KRW_volume = Math.round(KRW_Coin[i]['acc_trade_price_24h'] / 100000000);
+            USDT_volume = "";
+
+            if (ticker in USDT_Coin) {
+                USDT_price = USDT_Coin[ticker]['lastPrice'] * Exchange_Rate;
+                USDT_volume = addComma(Math.round(USDT_Coin[ticker]['quoteVolume'] * Exchange_Rate / 100000000)) + "억\n";
+                kimp_price = KRW_price - USDT_price;
+
+                kimp_percent = (kimp_price / USDT_price * 100);
+
+                if (Math.round(USDT_price).toString().length < 3)
+                    USDT_price = USDT_price.toFixed(2);
+                else
+                    USDT_price = Math.round(USDT_price);
+                USDT_price = addComma(USDT_price);
+
+                // if (Math.round(Math.abs(kimp_percent)).toString().length < 3)
+                //     kimp_percent = kimp_percent.toFixed(2);
+                // else
+                //     kimp_percent = Math.round(kimp_percent);
+
+                if (Math.round(kimp_price).toString().length < 3)
+                    kimp_price = kimp_price.toFixed(2);
+                else
+                    kimp_price = Math.round(kimp_price);
+                kimp_price = addComma(kimp_price);
+            }
+
+            var dict = {};
+            dict['coinname_kr'] = coinname_kr;
+            dict['ticker'] = ticker;
+            dict['KRW_price'] = KRW_price;
+            dict['USDT_price'] = USDT_price;
+            dict['kimp_percent'] = kimp_percent;
+            dict['kimp_price'] = kimp_price;
+            dict['kimp_color'] = kimp_color;
+            dict['change_rate'] = change_rate;
+            dict['change_price'] = change_price;
+            dict['change_color'] = change_color;
+            dict['KRW_volume'] = KRW_volume;
+            dict['USDT_volume'] = USDT_volume;
+
+            kimp_arr[i] = dict;
+        }
+
+        if (sort == "coin_name" && scending == 'A') {
+            kimp_arr.sort(function (a, b) {
+                return a['coinname_kr'] < b['coinname_kr'] ? -1 : a['coinname_kr'] > b['coinname_kr'] ? 1 : 0;  // 광희, 명수, 재석, 형돈
+            });
+        } else if (sort == "coin_name" && scending == 'D') {
+            kimp_arr.sort(function (a, b) {
+                return a['coinname_kr'] > b['coinname_kr'] ? -1 : a['coinname_kr'] < b['coinname_kr'] ? 1 : 0;  // 광희, 명수, 재석, 형돈
+            });
+        } else if (sort == "price" && scending == 'A') {
+            kimp_arr.sort(function (a, b) {
+                return a['KRW_price'] < b['KRW_price'] ? -1 : a['KRW_price'] > b['KRW_price'] ? 1 : 0;  // 광희, 명수, 재석, 형돈
+            });
+        } else if (sort == "price" && scending == 'D') {
+            kimp_arr.sort(function (a, b) {
+                return a['KRW_price'] > b['KRW_price'] ? -1 : a['KRW_price'] < b['KRW_price'] ? 1 : 0;  // 광희, 명수, 재석, 형돈
+            });
+        } else if (sort == "kimp" && scending == 'A') {
+            kimp_arr.sort(function (a, b) {
+                return parseFloat(a['kimp_percent']) < parseFloat(b['kimp_percent']) ? -1 : parseFloat(a['kimp_percent']) > parseFloat(b['kimp_percent']) ? 1 : 0;  // 광희, 명수, 재석, 형돈
+            });
+        } else if (sort == "kimp" && scending == 'D') {
+            kimp_arr.sort(function (a, b) {
+                return parseFloat(a['kimp_percent']) > parseFloat(b['kimp_percent']) ? -1 : parseFloat(a['kimp_percent']) < parseFloat(b['kimp_percent']) ? 1 : 0;  // 광희, 명수, 재석, 형돈
+            });
+        } else if (sort == "change_rate" && scending == 'A') {
+            kimp_arr.sort(function (a, b) {
+                return parseFloat(a['change_rate']) < parseFloat(b['change_rate']) ? -1 : parseFloat(a['change_rate']) > parseFloat(b['change_rate']) ? 1 : 0;  // 광희, 명수, 재석, 형돈
+            });
+        } else if (sort == "change_rate" && scending == 'D') {
+            kimp_arr.sort(function (a, b) {
+                return parseFloat(a['change_rate']) > parseFloat(b['change_rate']) ? -1 : parseFloat(a['change_rate']) < parseFloat(b['change_rate']) ? 1 : 0;  // 광희, 명수, 재석, 형돈
+            });
+        } else if (sort == "volume" && scending == 'A') {
+            kimp_arr.sort(function (a, b) {
+                return a['KRW_volume'] < b['KRW_volume'] ? -1 : a['KRW_volume'] > b['KRW_volume'] ? 1 : 0;  // 광희, 명수, 재석, 형돈
+            });
+        } else if (sort == "volume" && scending == 'D') {
+            kimp_arr.sort(function (a, b) {
+                return a['KRW_volume'] > b['KRW_volume'] ? -1 : a['KRW_volume'] < b['KRW_volume'] ? 1 : 0;  // 광희, 명수, 재석, 형돈
+            });
+        }
+
+        kimp_tr = document.getElementById("kimp");
+
+        for (i = 0; i < kimp_arr.length; i++) {
+
+            if (parseInt(kimp_arr[i]['KRW_price']).toString().length < 3)
+                kimp_arr[i]['KRW_price'] = kimp_arr[i]['KRW_price'].toFixed(2);
+            kimp_arr[i]['KRW_price'] = addComma(kimp_arr[i]['KRW_price']);
+
+            kimp_arr[i]['KRW_volume'] = addComma(kimp_arr[i]['KRW_volume']);
+
+            if (Math.abs(kimp_arr[i]['kimp_percent']) == 99999)
+                kimp_arr[i]['kimp_percent'] = "";
+            if (kimp_arr[i]['kimp_percent'] > 0) {
+                if (Math.round(kimp_arr[i]['kimp_percent']).toString().length < 3)
+                    kimp_arr[i]['kimp_percent'] = addComma(kimp_arr[i]['kimp_percent'].toFixed(2));
+                else
+                    kimp_arr[i]['kimp_percent'] = addComma(Math.round(kimp_arr[i]['kimp_percent']));
+                kimp_arr[i]['kimp_percent'] = "+" + kimp_arr[i]['kimp_percent'];
+                kimp_arr[i]['kimp_color'] = "red";
+                kimp_arr[i]['kimp_percent'] += "%";
+            } else if (kimp_arr[i]['kimp_percent'] == 0 && kimp_arr[i]['USDT_price'] != 0) {
+                kimp_arr[i]['kimp_percent'] = "0.00";
+                kimp_arr[i]['kimp_color'] = "black";
+                kimp_arr[i]['kimp_percent'] += "%";
+            } else if (kimp_arr[i]['kimp_percent'] < 0) {
+                kimp_arr[i]['kimp_percent'] = Math.abs(kimp_arr[i]['kimp_percent']);
+                if (Math.round(Math.abs(kimp_arr[i]['kimp_percent'])).toString().length < 3)
+                    kimp_arr[i]['kimp_percent'] = addComma(kimp_arr[i]['kimp_percent'].toFixed(2));
+                else
+                    kimp_arr[i]['kimp_percent'] = addComma(Math.round(kimp_arr[i]['kimp_percent']));
+                kimp_arr[i]['kimp_percent'] = "-" + kimp_arr[i]['kimp_percent'];
+                kimp_arr[i]['kimp_color'] = "blue";
+                kimp_arr[i]['kimp_percent'] += "%";
+            }
+
+
+            if (kimp_arr[i]['change_rate'] > 0) {
+                kimp_arr[i]['change_rate'] = kimp_arr[i]['change_rate'];
+                if (Math.round(kimp_arr[i]['change_rate']).toString().length < 3)
+                    kimp_arr[i]['change_rate'] = addComma(kimp_arr[i]['change_rate'].toFixed(2));
+                else
+                    kimp_arr[i]['change_rate'] = addComma(Math.round(kimp_arr[i]['change_rate']));
+                kimp_arr[i]['change_rate'] = "+" + kimp_arr[i]['change_rate'];
+                kimp_arr[i]['change_color'] = "red";
+                kimp_arr[i]['change_rate'] += "%";
+            } else if (kimp_arr[i]['change_rate'] == 0) {
+                kimp_arr[i]['change_rate'] = "0.00";
+                kimp_arr[i]['change_color'] = "black";
+                kimp_arr[i]['change_rate'] += "%";
+            } else if (kimp_arr[i]['change_rate'] < 0) {
+                kimp_arr[i]['change_rate'] = Math.abs(kimp_arr[i]['change_rate']);
+                if (Math.round(Math.abs(kimp_arr[i]['change_rate'])).toString().length < 3)
+                    kimp_arr[i]['change_rate'] = addComma(kimp_arr[i]['change_rate'].toFixed(2));
+                else
+                    kimp_arr[i]['change_rate'] = addComma(Math.round(kimp_arr[i]['change_rate']));
+                kimp_arr[i]['change_rate'] = "-" + kimp_arr[i]['change_rate'];
+                kimp_arr[i]['change_color'] = "blue";
+                kimp_arr[i]['change_rate'] += "%";
+            }
+
+            inner = "<tr id=\"kimp_tr\"+i class=\"text-right lg:text-sm tracking-tight lg:tracking-normal\">" +
+                "<td class=\"py-4 lg:pl-6\">\n" +
+                "<div class=\"flex flex-col items-start text-left\">\n" +
+                "<div class=\"flex items-center\">\n" +
+                "<img src=\"https://static.upbit.com/logos/"
+                + kimp_arr[i]['ticker'] + ".png\" alt=\"" + kimp_arr[i]['ticker'] + "ETC\" title=\"" + kimp_arr[i]['ticker'] + "\" class=\"w-6 h-6 rounded-full\">" +
+                "<span id=\"kimp_name\"+i class=\"font-bold lg:w-full overflow-x-hidden whitespace-nowrap overflow-ellipsis lg:ml-2\">"
+                + kimp_arr[i]['coinname_kr'] + "</span>\n" +
+                //"</div>\n" +
+                //"<div class=\"flex items-center space-x-1 lg:space-x-2\">\n" +
+                //"<span class=\"w-1.5 h-4 flex justify-center items-center text-xs cursor-pointer text-gray-300 dark:text-gray-700\">" +
+                //"<i aria-hidden=\"true\" class=\"far fa-star inline-flex\"></i>" +
+                "</span><span class=\"text-gray-500 space-x-1 lg:space-x-1.5 flex items-center lg:ml-2\">" +
+                "<span>" + kimp_arr[i]['ticker'] + "</span></span>" +
+                //"<i aria-hidden=\"true\" class=\"text-sm fas fa-chart-area cursor-pointer text-gray-400 dark:text-gray-600 hover:text-gray-500 dark:hover:text-gray-500\"></i>\n" +
+                //"</div>\n" +
+                "</div>\n" +
+                "</div>\n" +
+                "</td>\n" +
+                "<td class=\"lg:pr-32\">\n" +
+                "<div id=\"kimp_kimp\"+i class=\"text-" + kimp_arr[i]['kimp_color'] + "\">\n" +
+                kimp_arr[i]['kimp_percent'] + "\n" +
+                "</div>\n" +
+                "<div class=\"text-gray-500\">\n" +
+                kimp_arr[i]['kimp_price'] +
+                "</div>\n" +
+                "</td>\n" +
+                "<td id=\"kimp_price\"+i class=\"text-" + kimp_arr[i]['change_color'] + " lg:pr-32\">\n" +
+                kimp_arr[i]['KRW_price'] +
+                "<div class=\"text-gray-500\">\n" +
+                kimp_arr[i]['USDT_price'] +
+                "</div>\n" +
+                "</td>\n" +
+                "<td id=\"kimp_change\"+i class=\"text-" + kimp_arr[i]['change_color'] + " lg:pr-32\">\n" +
+                kimp_arr[i]['change_rate'] +
+                "<div class=\"text-gray-500\">\n" +
+                kimp_arr[i]['change_price'] +
+                "</div>\n" +
+                "</td>\n" +
+                // "<td class=\"text-gray-500 hidden lg:table-cell lg:w-32\">\n" +
+                // "<div class=\"text-red\">\n" +
+                // "-60.38%\n" +
+                // "</div>\n" +
+                // "203,350\n" +
+                // "</td>\n" +
+                // "<td class=\"text-gray-500 hidden lg:table-cell lg:w-32\">\n" +
+                // "<div class=\"text-green\">\n" +
+                // "+1358.28%\n" +
+                // "</div>\n" +
+                // "5,525\n" +
+                // "</td>\n" +
+                "<td id=\"kimp_volume\"+i class=\"lg:pr-6\">\n" +
+                kimp_arr[i]['KRW_volume'] + "억\n" +
+                "<div class=\"text-gray-400 dark:text-gray-600\">\n" +
+                kimp_arr[i]['USDT_volume'] +
+                "</div>\n" +
+                "</td>" +
+                "</tr>\n";
+
+            innerHTML += inner;
+        }
+        kimp_tr.innerHTML = innerHTML;
+
+        // setTimeout(function () {
+        //     createKimp();
+        //     //kimp_sort("name", KRW_Coin.length);
+        // }, 3000)
+    };
+
+    function filter() {
+
+        var value, name, item;
+        var del_index = [];
+
+        KRW_Market = KRW_tmp.slice();
+
+        value = document.getElementById("value").value.toUpperCase();
+        //item = document.getElementsByClassName("item");
+
+        for (i = 0; i < KRW_Market.length; i++) {
+            //name = item[i].getElementsByClassName("name");
+            var ticker = KRW_Market[i]['market'].split("-")[1].toUpperCase();
+            var korean_name = KRW_Market[i]['korean_name'].toUpperCase();
+            //var english_name = KRW_Market[i]['english_name'].toUpperCase();
+            if (ticker.indexOf(value) == -1 &&
+                korean_name.indexOf(value) == -1) //&& english_name.indexOf(value) == -1
+                KRW_Market[i] = null;
+        }
+
+        KRW_Market = KRW_Market.filter(function (item) {
+            return item !== null && item !== undefined && item !== '';
+        });
+
+        KRW_Coin = KRW_MarketCoin(KRW_Market);
+        createKimp();
+    }
+
+    function sorting(s, id) {
+
+        //clearTimeout(serogochim); // 새로고침 종료
+
+        if (sort == s) {
+            if (scending == 'A') {
+                scending = 'D';
+                obj_bold.children[0].children[0].classList.remove('text-gray-900');
+                id.children[0].children[1].classList.add('text-gray-900');
+            } else if (scending == 'D') {
+                scending = 'A';
+                obj_bold.children[0].children[1].classList.remove('text-gray-900');
+                id.children[0].children[0].classList.add('text-gray-900');
+            }
+        } else {
+            sort = s;
+            scending = 'A';
+            obj_bold.children[0].children[0].classList.remove('text-gray-900');
+            obj_bold.children[0].children[1].classList.remove('text-gray-900');
+            id.children[0].children[0].classList.add('text-gray-900');
+        }
+
+        obj_bold.style.fontWeight = "";
+        obj_bold.classList.remove('text-gray-900');
+
+        id.style.fontWeight = "bold";
+        id.classList.add('text-gray-900');
+        obj_bold = id; // 현재 객체를 저장해 둔다.
+
+        createKimp(); // 새로고침 재시작
+        // serogochim = setTimeout(function run() {
+        //     createKimp();
+        //     setTimeout(run, 3000);
+        // }, 3000);
+    }
+
+    function addComma(n) {
+        return n.toLocaleString();
+        //return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+</script>
+
+
+{% endblock content %}

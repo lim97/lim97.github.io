@@ -1,0 +1,63 @@
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+{% endblock css %}
+
+
+<div id="__next" style="height: auto !important;">
+	<header class="relative lg:sticky lg:top-0 border-b-1 border-general z-40 bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 bg-blur">
+
+	<div>
+		<div class="max-w-screen-lg px-2.5 lg:px-4 mx-auto relative">
+			<div class="flex flex-col lg:flex-row lg:items-center">
+				<div class="flex flex-col lg:flex-row mt-2 lg:my-4 lg:space-x-10">
+					<strong class="font-accelerator text-4xl lg:text-4xl cursor-pointer"><a href="{% url "trading:home" %}">Dgaza</a></strong>
+				</div>
+
+				<span class="flex-1"></span>
+
+				<div class="flex flex-col lg:flex-row lg:my-4 lg:mr-8 lg:space-x-10">
+					<nav class="overflow-x-auto lg:overflow-x-hidden scroll-hidden">
+					<ul class="flex align-middle items-center space-x-4 lg:space-x-5">
+						<li class="text-base whitespace-nowrap tracking-tight relative "><a href="{% url "trading:home" %}">트레이딩</a></li>
+						<li class="text-base whitespace-nowrap tracking-tight relative "><a href="https://www.bybt.com/LongShortRatio">롱&숏</a></li>
+						<li class="text-base whitespace-nowrap tracking-tight relative "><a href="{% url "news:home" %}">뉴스</a></li>
+						<li class="text-base whitespace-nowrap tracking-tight relative "><a href="{% url "calendars:home" %}">일정</a></li>
+						<li class="text-base whitespace-nowrap tracking-tight relative "><a href="{% url "channel:home" %}">채널</a></li>
+					</ul>
+					</nav>
+				</div>
+
+				<div class="absolute lg:static top-2 text-xs lg:space-x-2 flex">
+					<div class="login text-sm font-bold pl-2 inline-flex items-center">
+						<button class="custom-btn btn-6">
+                           {% if user.is_authenticated %}
+                           <span onclick="location.href='{% url  "users:logout" %}'">Logout</span>
+                           <span onclick="location.href='{% url "users:profile" user.pk %}'">내정보</span>
+                           {% else %}
+                           <span onclick="location.href='{% url "users:kakao-login" %}'">Login</span>
+                           {% endif %}
+
+						</button>
+					</div>
+<!
+				</div>
+			</div>
+		</div>
+	</div>
+	</header>
+</div>
+
+<script>
+	var url = window.location.pathname;
+	var ul = document.querySelectorAll('ul > li');
+
+	for (let u of ul) {
+		if (String(u.children[0]).indexOf(url) != -1)
+			u.classList.add('font-bold');
+	}
+
+</script>
+
+

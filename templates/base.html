@@ -1,0 +1,43 @@
+{% load static %}
+
+<html lang="en">
+<head>
+<title>Dgaza</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  {% block css %}
+  {% endblock css %}
+</head>
+<body>
+
+{% include 'base_view/header.html' %}
+
+
+{% block content %} {% endblock %}
+
+
+{% include 'base_view/footer.html' %}
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+    function change() {
+      document.getElementById('btn');
+      if(btn.innerText == "dark-mode"){
+            btn.innerText = "light-mode";
+
+          }
+      else if(btn.innerText == "light-mode"){
+        btn.innerText = "dark-mode";
+      }
+    }
+</script>
+
+<script>
+   function myFunction() {
+      var element = document.body;
+      element.classList.toggle("dark-mode");
+   }
+</script>

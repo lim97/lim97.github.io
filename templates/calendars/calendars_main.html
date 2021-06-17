@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/calendars/calenmain.css' %}"/>
+{% endblock css %}
+{% block content %}
+
+</form>
+
+<div class="main-wrapper">
+    <div class="at-container">
+        <div class="amina-header">
+            <div class="div-title-underbar">
+
+                <nav class="hublinknav flex">
+                    <div onmouseover="desc_on()" onmouseout="desc_out()" class="Title">
+
+                        <h1 class="hubh1">Calander
+                            <div class="Title__highlight"></div>
+                        </h1>
+                        <div class="Title__underline"></div>
+                        <div aria-hidden class="Title__filled">Calander</div>
+                    </div>
+                </nav>
+                <div id="desc" class="hide">
+                    <p>설명 입니다...</p>
+                </div>
+                <script src="https://blockchainhub.kr/js/dist/hubAppBridge.min.js?ver=20210517"></script>
+                <script>
+                    HubAppBridge.init({callback: HubAppBridge.page.toExternal});
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="calendardiv">
+   <div class="calendarcoin">
+      <div class="calendarcoinhead">
+         <p class="coinheadp">Info</p>
+      </div>
+      <div class="calendarcointoday">
+          {% for ca in calendars %}
+         <div class="coininfo">
+            <div class="coinhead">
+               <img class="coinimg" src="{{ca.ca_img}}">
+               <span class="coinname"> {{ca.name}} </span>
+            </div>
+            <div class="ml-6 coincontent">
+               <div class="cointitle">
+                  <p>{{ca.subname}}</p>
+               </div>
+               <div class="mt-4 coinsubtitle">
+                  <p class="coinsubtitlep">{{ca.description}}</p>
+               </div>
+            </div>
+         </div>
+          {% endfor %}
+      </div>
+   </div>
+   <div id="container">
+
+      <div id="header">
+        <div id="monthDisplay"></div>
+        <div>
+          <button id="backButton">Back</button>
+          <button id="nextButton">Next</button>
+        </div>
+      </div>
+
+      <div id="weekdays">
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+      </div>
+
+      <div id="calendar"></div>
+   </div>
+</div>
+    <div id="newEventModal">
+      <h2>New Event</h2>
+
+      <input id="eventTitleInput" placeholder="Event Title" />
+
+      <button id="saveButton">Save</button>
+      <button id="cancelButton">Cancel</button>
+    </div>
+
+    <div id="deleteEventModal">
+      <h2>Event</h2>
+
+      <p id="eventText"></p>
+
+      <button id="deleteButton">Delete</button>
+      <button id="closeButton">Close</button>
+    </div>
+
+    <div id="modalBackDrop"></div>
+
+   <a method="get" id ="today"  href="{%url "calendars:day" "100" %}"></a>
+   <a method="get" id = "cl_day" href="" ></a>
+
+
+</div>
+
+
+<script>
+    var desc = document.getElementById("desc");
+
+    function desc_on() {
+        desc.classList.remove('hide');
+        desc.classList.add('disp');
+    }
+
+    function desc_out() {
+        desc.classList.remove('disp');
+        desc.classList.add('hide');
+    }
+</script>
+
+
+
+
+
+
+
+<script>
+   let nav = 0;
+let clicked = null;
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+
+const calendar = document.getElementById('calendar');
+const newEventModal = document.getElementById('newEventModal');
+const deleteEventModal = document.getElementById('deleteEventModal');
+const backDrop = document.getElementById('modalBackDrop');
+const eventTitleInput = document.getElementById('eventTitleInput');
+const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const  day = document.getElementById('today');
+const  se_day = null;
+
+
+function openModal(date) {
+  clicked = date;
+  const eventForDay = events.find(e => e.date === clicked);
+  var strArray= date.split('/');
+   var cl_month = strArray[0];
+   if(cl_month<10){
+       cl_month= "0" + cl_month;
+   }
+  var cl_day = strArray[1];
+   if(cl_day<10){
+       cl_day= "0" + cl_day;
+   }
+  var cl_year = strArray[2];
+  var cl_reslut =  cl_year+"."+ cl_month+"."+cl_day;
+  var link = document.getElementById("cl_day");
+  link.href = "/claendars/home/" + cl_reslut ;
+  window.location.href="/claendars/home/" + cl_reslut ;
+
+
+
+
+}
+
+function load() {
+  const dt = new Date();
+
+  if (nav !== 0) {
+    dt.setMonth(new Date().getMonth() + nav);
+  }
+
+  const day = dt.getDate();
+  const month = dt.getMonth();
+  const year = dt.getFullYear();
+
+  const month1 = month+1
+  const re = year.toString() +"."+month1.toString() +"." +day.toString();
+
+    var link = document.getElementById("today");
+    link.href = "/claendars/home/" + re ;
+
+
+
+
+
+  const firstDayOfMonth = new Date(year, month, 1);
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  });
+  const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
+
+  document.getElementById('monthDisplay').innerText =
+    `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
+
+  calendar.innerHTML = '';
+
+  for(let i = 1; i <= paddingDays + daysInMonth; i++) {
+    const daySquare = document.createElement('div');
+    daySquare.classList.add('day');
+
+    const dayString = `${month + 1}/${i - paddingDays}/${year}`;
+
+    if (i > paddingDays) {
+      daySquare.innerText = i - paddingDays;
+      const eventForDay = events.find(e => e.date === dayString);
+
+      if (i - paddingDays === day && nav === 0) {
+        daySquare.id = 'currentDay';
+      }
+
+      if (eventForDay) {
+        const eventDiv = document.createElement('div');
+        eventDiv.classList.add('event');
+        eventDiv.innerText = eventForDay.title;
+        daySquare.appendChild(eventDiv);
+      }
+
+      daySquare.addEventListener('click', () => openModal(dayString));
+    } else {
+      daySquare.classList.add('padding');
+    }
+
+    calendar.appendChild(daySquare);
+  }
+}
+
+function closeModal() {
+  eventTitleInput.classList.remove('error');
+  newEventModal.style.display = 'none';
+  deleteEventModal.style.display = 'none';
+  backDrop.style.display = 'none';
+  eventTitleInput.value = '';
+  clicked = null;
+  load();
+}
+
+function saveEvent() {
+  if (eventTitleInput.value) {
+    eventTitleInput.classList.remove('error');
+
+    events.push({
+      date: clicked,
+      title: eventTitleInput.value,
+    });
+
+    localStorage.setItem('events', JSON.stringify(events));
+    closeModal();
+  } else {
+    eventTitleInput.classList.add('error');
+  }
+}
+
+function deleteEvent() {
+  events = events.filter(e => e.date !== clicked);
+  localStorage.setItem('events', JSON.stringify(events));
+  closeModal();
+}
+
+function initButtons() {
+  document.getElementById('nextButton').addEventListener('click', () => {
+    nav++;
+    load();
+  });
+
+  document.getElementById('backButton').addEventListener('click', () => {
+    nav--;
+    load();
+  });
+
+  document.getElementById('saveButton').addEventListener('click', saveEvent);
+  document.getElementById('cancelButton').addEventListener('click', closeModal);
+  document.getElementById('deleteButton').addEventListener('click', deleteEvent);
+  document.getElementById('closeButton').addEventListener('click', closeModal);
+}
+
+initButtons();
+load();
+
+
+</script>
+
+
+{% endblock content %}

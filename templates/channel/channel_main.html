@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+{% endblock css %}
+{% block content %}
+{{now}}
+
+<div class="main-wrapper">
+    <div class="at-container">
+        <div class="amina-header">
+            <div class="div-title-underbar">
+
+                <nav class="hublinknav flex">
+                    <div onmouseover="desc_on()" onmouseout="desc_out()" class="Title">
+
+                        <h1 class="hubh1">Channel
+                            <div class="Title__highlight"></div>
+                        </h1>
+                        <div class="Title__underline"></div>
+                        <div aria-hidden class="Title__filled">Channel</div>
+                    </div>
+
+
+                    <a class="hublink" href="{% url "channel:home" %}">
+                    전체보기
+                    <svg viewBox="0 0 70 36">
+                        <path d="M6.9739 30.8153H63.0244C65.5269 30.8152 75.5358 -3.68471 35.4998 2.81531C-16.1598 11.2025 0.894099 33.9766 26.9922 34.3153C104.062 35.3153 54.5169 -6.68469 23.489 9.31527" />
+                    </svg>
+                    </a>
+                    <a class="hublink" href="{% url "channel:trade" %}">
+                    거래소
+                    <svg viewBox="0 0 70 36">
+                        <path d="M6.9739 30.8153H63.0244C65.5269 30.8152 75.5358 -3.68471 35.4998 2.81531C-16.1598 11.2025 0.894099 33.9766 26.9922 34.3153C104.062 35.3153 54.5169 -6.68469 23.489 9.31527" />
+                    </svg>
+                    </a>
+                    <a class="hublink" href="{% url "channel:youtube" %}">
+                    유튜브
+                    <svg viewBox="0 0 70 36">
+                        <path d="M6.9739 30.8153H63.0244C65.5269 30.8152 75.5358 -3.68471 35.4998 2.81531C-16.1598 11.2025 0.894099 33.9766 26.9922 34.3153C104.062 35.3153 54.5169 -6.68469 23.489 9.31527" />
+                    </svg>
+                    </a>
+                    <a class="hublink" href="{% url "channel:kakao" %}">
+                    카카오
+                    <svg viewBox="0 0 70 36">
+                        <path d="M6.9739 30.8153H63.0244C65.5269 30.8152 75.5358 -3.68471 35.4998 2.81531C-16.1598 11.2025 0.894099 33.9766 26.9922 34.3153C104.062 35.3153 54.5169 -6.68469 23.489 9.31527" />
+                    </svg>
+                    </a>
+                    <a class="hublink" href="{% url "channel:etc" %}">
+                    기타
+                    <svg viewBox="0 0 70 36">
+                        <path d="M6.9739 30.8153H63.0244C65.5269 30.8152 75.5358 -3.68471 35.4998 2.81531C-16.1598 11.2025 0.894099 33.9766 26.9922 34.3153C104.062 35.3153 54.5169 -6.68469 23.489 9.31527" />
+                    </svg>
+                    </a>
+                </nav>
+                <div id="desc" class="hide">
+                    <p>설명 입니다...</p>
+                </div>
+                <script src="https://blockchainhub.kr/js/dist/hubAppBridge.min.js?ver=20210517"></script>
+                <script>
+                    HubAppBridge.init({callback: HubAppBridge.page.toExternal});
+                </script>
+            </div>
+        </div>
+        <div class="list-container">
+
+            {% for ch in channels  %}
+            {{context}}
+            <div class="list-row">
+                <div class="list-item">
+
+                    <div class="imgframe">
+
+                        <a href="{{ch.link}}">
+                            <img src="{{ch.ch_img}}">
+                        </a>
+
+                    </div>
+
+                    <div class="list-content">
+
+                        <div class="list-details">
+                            {{ch.channeltype}}
+                        </div>
+                        <h2>
+
+                            <a href="{{ch.link}}">
+                                {{ch.name}}
+                            </a>
+
+                        </h2>
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+
+        </div>
+        <div class="text-center">
+
+
+            <div class="pagecontainer">
+                <span>
+                {% for page in paginator.page_range %}
+                    <div onClick="location.href='?page={{page}}';" class="index">{{page}}</div>
+                    <!--              <a href="?page={{page}}">{{page}}</a>-->
+                {% endfor %}
+                    </span>
+                <svg viewBox="0 0 100 100">
+                    <path
+                            d="m 7.1428558,49.999998 c -1e-7,-23.669348 19.1877962,-42.8571447 42.8571442,-42.8571446 23.669347,0 42.857144,19.1877966 42.857144,42.8571446"/>
+                </svg>
+                <svg viewBox="0 0 100 100">
+                    <path
+                            d="m 7.1428558,49.999998 c -1e-7,23.669347 19.1877962,42.857144 42.8571442,42.857144 23.669347,0 42.857144,-19.187797 42.857144,-42.857144"/>
+                </svg>
+            </div>
+<!--            {% if page_obj.has_previous %}-->
+<!--            <a href="?page={{page_obj.previous_page_number}}">이전</a>-->
+<!--            {% endif %}-->
+<!--            {% if page_obj.has_next  %}-->
+<!--            <a href="?page={{page_obj.next_page_number}}">다음</a>-->
+<!--            {% endif %}-->
+        </div>
+
+
+        <!--        <div class="pagecontainer">-->
+        <!--        <span><div onClick="page(1)" class="index">1</div><div onClick="page(2)" class="index">2</div><div-->
+        <!--                onClick="page(3)" class="index">3</div><div onClick="page(4)" class="index">4</div><div-->
+        <!--                onClick="page(5)" class="index">5</div></span>-->
+        <!--            <svg viewBox="0 0 100 100">-->
+        <!--                <path-->
+        <!--                        d="m 7.1428558,49.999998 c -1e-7,-23.669348 19.1877962,-42.8571447 42.8571442,-42.8571446 23.669347,0 42.857144,19.1877966 42.857144,42.8571446"/>-->
+        <!--            </svg>-->
+        <!--            <svg viewBox="0 0 100 100">-->
+        <!--                <path-->
+        <!--                        d="m 7.1428558,49.999998 c -1e-7,23.669347 19.1877962,42.857144 42.8571442,42.857144 23.669347,0 42.857144,-19.187797 42.857144,-42.857144"/>-->
+        <!--            </svg>-->
+        <!--        </div>-->
+
+    </div>
+
+
+
+</div>
+<script>
+    var desc = document.getElementById("desc");
+
+    function desc_on() {
+        desc.classList.remove('hide');
+        desc.classList.add('disp');
+    }
+
+    function desc_out() {
+        desc.classList.remove('disp');
+        desc.classList.add('hide');
+    }
+</script>
+
+
+<script>
+    var page = window.location.search.split("=")[1];
+    const c = document.querySelector('.pagecontainer');
+    c.className = 'pagecontainer';
+    c.classList.add(`i${page}`);
+    document.write(page);
+</script>
+
+
+{% endblock content %}

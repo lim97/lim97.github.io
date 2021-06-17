@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+{% endblock css %}
+{% block content %}
+
+<div class="main-wrapper">
+    <div class="at-container">
+        <div class="amina-header">
+            <div class="div-title-underbar">
+
+                <nav class="hublinknav flex">
+                    <div onmouseover="desc_on()" onmouseout="desc_out()" class="Title">
+                        <h1 class="hubh1">NEWS
+                            <div class="Title__highlight"></div>
+                        </h1>
+                        <div class="Title__underline"></div>
+                        <div aria-hidden class="Title__filled">NEWS</div>
+                    </div>
+                </nav>
+                <div id="desc" class="hide">
+                    <p>설명 입니다...</p>
+                </div>
+                <script src="https://blockchainhub.kr/js/dist/hubAppBridge.min.js?ver=20210517"></script>
+                <script>
+                    HubAppBridge.init({callback: HubAppBridge.page.toExternal});
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="py-12 newsWrapper">
+    <div id="newslist" class="list shadow">
+        <div id="news" class="newslistWrap">
+
+
+
+        </div>
+    </div>
+    <div class="popularArticle marginB15 shadow">
+        <div class="popularArticleTitle">많이 본 기사</div>
+        <div class="popularCont">
+            <div class="popularList">
+                <div class="ranking rankingBlue">1</div>
+                <div class="articleTitle">
+                    <a href="/article-64008" title="美 SEC, 반에크 비트코인 ETF 승인 결정 재차 연기…&quot;시장 위협에 대한 공개 의견 필요&quot;">
+                        美 SEC, 반에크 비트코인 ETF 승인 결정 재차 연기…"시장 위협에 대한 공개 의견 필요" <span class="comment">[36]</span> </a>
+                </div>
+            </div>
+        </div>
+        <div class="popularCont">
+            <div class="popularList">
+                <div class="ranking rankingBlue">2</div>
+                <div class="articleTitle">
+                    <a href="/article-63984" title="[시세 브리핑] 비트코인 3만 8000달러…암호화폐 거래소 &quot;자체 발행 코인 취급 못한다&quot;">
+                        [시세 브리핑] 비트코인 3만 8000달러…암호화폐 거래소 "자체 발행 코인 취급 못한다" <span class="comment">[22]</span> </a>
+                </div>
+            </div>
+        </div>
+        <div class="popularCont">
+            <div class="popularList">
+                <div class="ranking rankingBlue">3</div>
+                <div class="articleTitle">
+                    <a href="/article-63987" title="튀니지, 불확실한 규제에 10대 암호화폐 이용자 체포…재무장관 &quot;비트코인 거래 합법화해야&quot;">
+                        튀니지, 불확실한 규제에 10대 암호화폐 이용자 체포…재무장관 "비트코인 거래 합법화해야" <span class="comment">[17]</span> </a>
+                </div>
+            </div>
+        </div>
+        <div class="popularCont">
+            <div class="popularList">
+                <div class="ranking rankingGray">4</div>
+                <div class="articleTitle">
+                    <a href="/article-63996" title="김기현 국민의힘 원내대표 &quot;투자자 보호하고 과세 유예해야&quot;">
+                        김기현 국민의힘 원내대표 "투자자 보호하고 과세 유예해야" <span class="comment">[26]</span> </a>
+                </div>
+            </div>
+        </div>
+        <div class="popularCont">
+            <div class="popularList">
+                <div class="ranking rankingGray">5</div>
+                <div class="articleTitle">
+                    <a href="/article-63982" title="[토큰포스트 브리핑] 튀니지, 비트코인 합법화 추진 外">
+                        [토큰포스트 브리핑] 튀니지, 비트코인 합법화 추진 外 <span class="comment">[10]</span> </a>
+                </div>
+            </div>
+        </div>
+        <div class="popularCont">
+            <div class="popularList">
+                <div class="ranking rankingGray">6</div>
+                <div class="articleTitle">
+                    <a href="/article-64022" title="모건 스탠리 &quot;디지털 유로화, 유럽 전체 예금 8% 흡수할 수도&quot;">
+                        모건 스탠리 "디지털 유로화, 유럽 전체 예금 8% 흡수할 수도" <span class="comment">[17]</span> </a>
+                </div>
+            </div>
+        </div>
+        <div class="popularCont">
+            <div class="popularList">
+                <div class="ranking rankingGray">7</div>
+                <div class="articleTitle">
+                    <a href="/article-64013" title="GM CEO &quot;비트코인 결제 도입, 고객이 결정&quot;">
+                        GM CEO "비트코인 결제 도입, 고객이 결정" <span class="comment">[31]</span> </a>
+                </div>
+            </div>
+        </div>
+        <div class="popularCont">
+            <div class="popularList">
+                <div class="ranking rankingGray">8</div>
+                <div class="articleTitle">
+                    <a href="/article-64016" title="암호화폐 거래소 &#39;자체 발행 코인&#39; 취급 금지…특금법 개정안 입법예고">
+                        암호화폐 거래소 '자체 발행 코인' 취급 금지…특금법 개정안 입법예고 <span class="comment">[22]</span> </a>
+                </div>
+            </div>
+        </div>
+        <div class="popularCont">
+            <div class="popularList">
+                <div class="ranking rankingGray">9</div>
+                <div class="articleTitle">
+                    <a href="/article-64048" title="세계은행, 엘살바도르 비트코인 도입 기술지원 거부">
+                        세계은행, 엘살바도르 비트코인 도입 기술지원 거부 <span class="comment">[22]</span> </a>
+                </div>
+            </div>
+        </div>
+        <div class="popularCont">
+            <div class="popularList">
+                <div class="ranking rankingGray">10</div>
+                <div class="articleTitle">
+                    <a href="/article-64026" title="탈중앙화 애플리케이션을 위한 암호화폐 지갑 전쟁의 서막">
+                        탈중앙화 애플리케이션을 위한 암호화폐 지갑 전쟁의 서막 <span class="comment">[15]</span> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="pagecontainer">
+        <span><div onClick="page(1)" class="index">1</div><div onClick="page(2)" class="index">2</div><div
+                onClick="page(3)" class="index">3</div><div onClick="page(4)" class="index">4</div><div
+                onClick="page(5)" class="index">5</div></span>
+    <svg viewBox="0 0 100 100">
+        <path
+                d="m 7.1428558,49.999998 c -1e-7,-23.669348 19.1877962,-42.8571447 42.8571442,-42.8571446 23.669347,0 42.857144,19.1877966 42.857144,42.8571446"/>
+    </svg>
+    <svg viewBox="0 0 100 100">
+        <path
+                d="m 7.1428558,49.999998 c -1e-7,23.669347 19.1877962,42.857144 42.8571442,42.857144 23.669347,0 42.857144,-19.187797 42.857144,-42.857144"/>
+    </svg>
+</div>
+
+
+<script>
+    var desc = document.getElementById("desc");
+
+    function desc_on() {
+        desc.classList.remove('hide');
+        desc.classList.add('disp');
+    }
+
+    function desc_out() {
+        desc.classList.remove('disp');
+        desc.classList.add('hide');
+    }
+</script>
+
+
+
+<script>
+    let news_div = document.getElementById("news");
+    let news = news_list();
+
+    function news_list() {
+        let news_ls = [];
+        const request = new XMLHttpRequest();
+        const url = 'https://api-manager.upbit.com/api/v1/coin_news';
+        request.open("GET", url, false);
+        request.send();
+        let ticket = JSON.parse(request.responseText)['data']['list'];
+
+        // document.write(JSON.stringify(ticket));
+        for (let t of ticket) {
+            let news = {};
+            news['title'] = t['title'];
+            news['url'] = t['url'];
+            news['date'] = t['created_at'].replace("T", " ").substr(0, 16);
+            news['content'] = t['content'].substr(0, 130).replace("…", "").replace("...", "");
+            if (news['content'][-1] == " " || news['content'][-1] == "\n") {
+                news['content'] = news['content'].substr(0, -2);
+            }
+            news['content'] += "...";
+            news_ls.push(news);
+        }
+        // document.write(JSON.stringify(news_ls[0]['title']));
+        return news_ls;
+    }
+
+    news_list();
+
+
+    function page(n) {
+        let i = (n - 1) * 10;
+        let last = i + 9;
+        let inner = "";
+        for (i; i <= last; i++) {
+            inner += "<div class=\"articleListWrap pl-2 py-2\">\n" +
+                "<div class=\"listRight\">\n" +
+                "<div class=\"articleListTitle\">\n" +
+                "<a class=\"text-blue newslink\" href=" + news[i]['url'] + " target=\"_blank\" title=" + news[i]['title'] + ">" + news[i]['title'] + "</a>\n" +
+                "</div>\n" +
+                "<div>\n" +
+                "<span class=\"articleListDate pb-3\">" + news[i]['date'] + "</span>\n" +
+                "</div>\n" +
+                "<div class=\"articleContDiv\">\n" +
+                "<p class=\"articleListCont\">" + news[i]['content'] + "</p>\n" +
+                "</div>\n" +
+                "</div>\n" +
+                "</div>\n";
+        }
+        news_div.innerHTML = inner;
+    }
+
+    page(1);
+</script>
+
+
+<script>
+    const c = document.querySelector('.pagecontainer')
+    const indexs = Array.from(document.querySelectorAll('.index'))
+    let cur = -1
+    indexs.forEach((index, i) => {
+        index.addEventListener('click', (e) => {
+            // clear
+            c.className = 'pagecontainer'
+            void c.offsetWidth; // Reflow
+            c.classList.add('open')
+            c.classList.add(`i${i + 1}`)
+            if (cur > i) {
+                c.classList.add('flip')
+            }
+            cur = i
+        })
+    })
+</script>
+
+
+{% endblock content %}

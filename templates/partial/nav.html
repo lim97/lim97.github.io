@@ -1,0 +1,33 @@
+
+
+    {% if user.is_authenticated %}
+    <li ><a href="{% url "users:logout" %}">Log out</a> {{user.nickname}}</li>
+        {% else %}
+        <li><a href="{% url "users:login" %}">Log in</a></li>
+        <li><a href="{% url "users:signup" %}">Sign up</a></li>
+        <li><a href="{% url "users:kakao-login" %}" %}">Kakao Log in</a></li>
+
+        {% endif %}
+    <button id = "btn" onclick="myFunction(); change();">dark-mode</button>
+
+
+<script type="text/javascript">
+    function change() {
+      document.getElementById('btn');
+      if(btn.innerText == "dark-mode"){
+            btn.innerText = "light-mode";
+          }
+      else if(btn.innerText == "light-mode"){
+        btn.innerText = "dark-mode";
+      }
+    }
+</script>
+
+<script type="text/javascript">
+    function myFunction() {
+          var element = document.body;
+          element.classList.toggle("dark-mode");
+          document.getElementById('btn')
+        }
+</script>
+

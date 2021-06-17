@@ -1,0 +1,43 @@
+<style type="text/css">
+    @import url("static/css/styles.css");
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="pl-10 pb-4 mx-auto col-xs-6 col-md-3">
+                <h6>Categories</h6>
+                <ul class="footer-links">
+                    <li><a href="{% url "home:home" %}">트레이딩</a></li>
+                    <li><a href="{% url "trading:home" %}">롱&숏</a></li>
+                    <li><a href="{% url "news:home" %}">뉴스</a></li>
+                    <li><a href="{% url "calendars:home" %}">일정</a></li>
+                    <li><a href="{% url "channel:home" %}">채널</a></li>
+                    <li><a href="{% url "trading:home" %}">에어드랍</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="lg:py-2 col-md-8 col-sm-6 col-xs-12 pt-5">
+                <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
+                    <a href="#">Dgaza Team</a>.
+                </p>
+            </div>
+
+            <div class="lg:col-md-4 col-sm-6 col-xs-12">
+                <ul class="social-icons">
+                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                    <li><a class="linkedin" href="#"><i class="fa fa-github"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
